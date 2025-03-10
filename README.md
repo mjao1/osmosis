@@ -9,7 +9,10 @@ This game simulates the selective permeability of a cell membrane, allowing play
 * VGA Controller: 640x480 resolution display
 * Timer Implementation: Multi-level counters for frame, half-second, and second timing used for game logic and flashing displays
 * Board inputs for gameplay and 7-segment hex displays for timer output
-
+<br>
 <p align = "center">
 <img src="https://github.com/user-attachments/assets/19fb5531-a641-4e9b-a0c4-91ad3fec4fc9">
+</p>
+<p align = "center">
+<img src="https://github.com/user-attachments/assets/513128ec-33db-44b1-a1ed-e07ecd08c72b">
 </p>
