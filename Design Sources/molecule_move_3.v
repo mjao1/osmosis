@@ -124,16 +124,20 @@ module molecule_move_3(
     assign pos_x_din = ({10{~load_init_pos}} & next_pos_x) | ({10{load_init_pos}} & init_pos_x);
     assign pos_x_load = frame;
     
+    wire [14:0] pos_xq;
+    
     countUD15L pos_x_counter(
         .clk(clk),
         .Up(1'b0),
         .Dw(1'b0),
         .LD(pos_x_load),
         .Din({5'b00000, pos_x_din}),
-        .Q({5'bxxxxx, pos_x}),
+        .Q(pos_xq),
         .UTC(),
         .DTC()
     );
+
+    assign pos_x = pos_xq[9:0];
     
     wire [9:0] init_pos_y;
     wire [9:0] pos_y_din;
@@ -151,16 +155,20 @@ module molecule_move_3(
     assign pos_y_din = ({10{~load_init_pos}} & next_pos_y) | ({10{load_init_pos}} & init_pos_y);
     assign pos_y_load = frame;
     
+    wire [14:0] pos_yq;
+    
     countUD15L pos_y_counter(
         .clk(clk),
         .Up(1'b0),
         .Dw(1'b0),
         .LD(pos_y_load),
         .Din({5'b00000, pos_y_din}), 
-        .Q({5'bxxxxx, pos_y}),     
+        .Q(pos_yq),     
         .UTC(),
         .DTC()
     );
+
+    assign pos_y = pos_yq[9:0];
     
     FDRE #(.INIT(1'b0)) v_x_reg0 (.C(clk), .R(reset), .CE(frame), .D(next_v_x[0]), .Q(v_x[0]));
     FDRE #(.INIT(1'b0)) v_x_reg_bus[8:1] (
